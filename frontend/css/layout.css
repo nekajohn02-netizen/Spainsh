@@ -1,0 +1,40 @@
+/* ---------- هيكل التطبيق: قائمة بزر واحد (☰) بدل الشريط الثابت، على كل المقاسات ---------- */
+.shell { display: block; min-height: 100dvh; }
+.sidebar { position: fixed; inset-block: 0; inset-inline-start: 0; width: min(300px, 86vw); height: 100dvh; overflow-y: auto; background: var(--surface); border-inline-end: 1px solid var(--line); padding: var(--s4); display: flex; flex-direction: column; gap: var(--s3); z-index: 70;
+  transform: translateX(100%); transition: transform .3s var(--ease); box-shadow: var(--shadow-2); }
+[dir="ltr"] .sidebar { transform: translateX(-100%); }
+.shell.open .sidebar { transform: none; }
+.shell.open .scrim { display: block; position: fixed; inset: 0; background: rgb(0 0 0 / .5); z-index: 65; }
+.apptop .menu-btn { display: grid; }
+.sidebar .brand { padding: .3rem .4rem var(--s3); }
+.nav-group { display: grid; gap: 2px; } .nav-group h4 { margin: var(--s3) .6rem .3rem; font-size: .72rem; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; font-weight: 700; }
+.nav-link { display: flex; align-items: center; gap: .75rem; padding: .62rem .8rem; border-radius: 14px; color: var(--text-2); font-weight: 600; text-decoration: none !important; transition: .18s; position: relative; }
+.nav-link:hover { background: var(--bg-2); color: var(--text); }
+.nav-link[aria-current="page"] { background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 16%, transparent), color-mix(in srgb, var(--gold) 12%, transparent)); color: var(--brand); }
+.nav-link[aria-current="page"]::before { content: ''; position: absolute; inset-inline-start: -16px; top: 22%; bottom: 22%; width: 4px; border-radius: 0 4px 4px 0; background: var(--brand); }
+.nav-link .count { margin-inline-start: auto; font-size: .72rem; background: var(--brand); color: var(--brand-ink); border-radius: 99px; padding: 0 .5rem; }
+.sidebar .me { margin-top: auto; display: flex; align-items: center; gap: .7rem; padding: .7rem; border-radius: 16px; background: var(--bg-2); }
+.avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; color: #fff; background: hsl(var(--h, 20) 65% 48%); flex: none; }
+.avatar.lg { width: 84px; height: 84px; font-size: 2rem; }
+.content { min-width: 0; }
+.apptop { position: sticky; top: 0; z-index: 40; display: flex; align-items: center; gap: var(--s3); padding: .7rem var(--s5); background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); min-height: 68px; }
+.apptop .menu-btn { display: none; }
+.search { position: relative; flex: 1; max-width: 420px; } .search .input { padding-inline-start: 2.6rem; min-height: 44px; border-radius: 999px; background: var(--surface); }
+.search .icon { position: absolute; inset-inline-start: 1rem; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+.results { position: absolute; inset-inline: 0; top: calc(100% + 8px); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow-2); padding: var(--s2); max-height: 60vh; overflow-y: auto; z-index: 80; }
+.results a { display: flex; gap: .6rem; justify-content: space-between; padding: .55rem .8rem; border-radius: 10px; color: var(--text); text-decoration: none !important; } .results a:hover { background: var(--bg-2); } .results h5 { margin: .5rem .8rem .2rem; color: var(--muted); font-size: .75rem; }
+.bell { position: relative; } .bell .dot-badge { position: absolute; top: 4px; inset-inline-end: 4px; min-width: 18px; height: 18px; border-radius: 99px; background: var(--brand); color: var(--brand-ink); font-size: .68rem; display: grid; place-items: center; font-weight: 800; padding: 0 4px; }
+.page-head { display: flex; align-items: flex-end; gap: var(--s4); flex-wrap: wrap; margin-bottom: var(--s5); } .page-head h1 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin: 0; } .page-head p { margin: .2rem 0 0; color: var(--text-2); }
+.main { padding: var(--s5); max-width: 1280px; margin-inline: auto; }
+.banner { background: linear-gradient(90deg, var(--violet), var(--brand)); color: #fff; text-align: center; padding: .5rem 1rem; font-weight: 700; font-size: .92rem; }
+.scrim { display: none; }
+@media (max-width: 960px) {
+  .apptop { padding-inline: var(--s3); } .main { padding: var(--s4) var(--s3); }
+  .shell .bottomnav { display: grid; } .shell { padding-bottom: 72px; }
+}
+/* ---------- لوحة الإدارة ---------- */
+.shell.admin .sidebar { background: color-mix(in srgb, var(--brand) 14%, #14122b); color: #e8e5ff; border-color: transparent; }
+.shell.admin .nav-link { color: #b9b5dd; } .shell.admin .nav-link:hover { background: rgb(255 255 255 / .08); color: #fff; }
+.shell.admin .nav-link[aria-current="page"] { background: color-mix(in srgb, var(--brand-2) 22%, transparent); color: var(--brand-2); } .shell.admin .nav-group h4 { color: #7e7aa8; } .shell.admin .brand { color: #fff; }
+.shell.admin .me { background: rgb(255 255 255 / .07); } .shell.admin .me small { color: #b9b5dd; }
+.tag-admin { background: var(--brand); color: var(--brand-ink); border-radius: 8px; font-size: .68rem; padding: 1px 8px; font-weight: 800; margin-inline-start: .4rem; }
